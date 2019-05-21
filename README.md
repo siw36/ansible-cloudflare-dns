@@ -96,7 +96,6 @@ vault_cfAccountName: "example.com"
 ```
 
 ## Example Playbook  
-`vars_files` is optional. You can also configure the vars file in vars/main.yml
 ```yaml
 ---
 - name: Configure Cloudflare DNS
@@ -104,9 +103,9 @@ vault_cfAccountName: "example.com"
   gather_facts: false
   become: false
   vars_files:
-    - path/to/file/containing/zones/list.yml
+    - vars/vault.yml
   roles:
-    - ansible-cloudflare-dns
+    - siw36.ansible_cloudflare_dns
 ```
 
 ## License
