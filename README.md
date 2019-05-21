@@ -11,6 +11,8 @@ This role works for paid AND free Cloudflare plans.
 Example use case:  
 You can easily include this role in any server provisioning routine (cloud, etc.) to automatically set up DNS records for new machines.  
 
+__Official Ansible Galaxy entry:__ https://galaxy.ansible.com/siw36/ansible_cloudflare_dns
+
 ## Requirements
 - Ansible
 - Cloudflare account and access token
