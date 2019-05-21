@@ -62,7 +62,6 @@
       Content-Type: "application/json"
     body: "{{ lookup('template','templates/record.json.j2') }}"
     body_format: json
-    body_format: json
     status_code: 200
   when:
     - record.state == 'present'
