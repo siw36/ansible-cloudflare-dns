@@ -2,7 +2,7 @@
    "type":"{{ record.type }}",
    "name":"{{ record.name }}",
    "content":"{{ record.value }}",
-   "ttl":{{ record.ttl | default(120) }}
+   "ttl":{{ record.ttl | default(120) }},
    "priority":{{ record.priority | default(10) }},
    "proxied":{{ record.proxied }}
 }
