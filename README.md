@@ -95,13 +95,16 @@ vault_cfAccountID: jbd913272gd9b397pd273ghb2u9pdgb
 vault_cfAccountName: "example.com"
 ```
 
-## Example Playbook
+## Example Playbook  
+`vars_files` is optional. You can also configure the vars file in vars/main.yml
 ```yaml
 ---
 - name: Configure Cloudflare DNS
   hosts: localhost
   gather_facts: false
   become: false
+  vars_files:
+    - path/to/file/containing/zones/list.yml
   roles:
     - ansible-cloudflare-dns
 ```
