@@ -20,7 +20,13 @@
       X-Auth-Email: "{{ cfEmail }}"
       X-Auth-Key: "{{ cfAPIKey }}"
       Content-Type: "application/json"
-    body: '{ "type":"{{ record.type }}","name":"{{ record.name }}","content":"{{ record.value }}","ttl":"{{ record.ttl | default("120") }}","priority":"{{ record.priority | default("10") }}","proxied":{{ record.proxied }} }'
+    body: >-
+      '{ "type":"{{ record.type }}",
+      "name":"{{ record.name }}",
+      "content":"{{ record.value }}",
+      "ttl":"{{ record.ttl | default("120") }}",
+      "priority":"{{ record.priority | default("10") }}",
+      "proxied":{{ record.proxied }} }'
     body_format: json
     status_code: 200
   when:
@@ -62,10 +68,20 @@
           X-Auth-Email: "{{ cfEmail }}"
           X-Auth-Key: "{{ cfAPIKey }}"
           Content-Type: "application/json"
-        body: '{ "type":"{{ record.type }}","name":"{{ record.name }}","content":"{{ record.value }}","ttl":"{{ record.ttl | default("120") }}","priority":"{{ record.priority | default("10") }}","proxied":{{ record.proxied }} }'
+        body: >-
+          '{ "type":"{{ record.type }}",
+          "name":"{{ record.name }}",
+          "content":"{{ record.value }}",
+          "ttl":"{{ record.ttl | default("120") }}",
+          "priority":"{{ record.priority | default("10") }}",
+          "proxied":{{ record.proxied }} }'
         body_format: json
         status_code: 200
-      when: recordPresent.json.result[0].content | default("") != record.value or recordPresent.json.result[0].type != record.type or recordPresent.json.result[0].proxied != record.proxied or recordPresent.json.result[0].ttl != record.ttl or recordPresent.json.result[0].priority != record.priority
+      when: recordPresent.json.result[0].content | default("") != record.value or
+            recordPresent.json.result[0].type != record.type or
+            recordPresent.json.result[0].proxied != record.proxied or
+            recordPresent.json.result[0].ttl != record.ttl or
+            recordPresent.json.result[0].priority != record.priority
   when:
     - record.state == 'present'
     - recordPresent.json.success

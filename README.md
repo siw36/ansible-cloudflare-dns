@@ -1,4 +1,5 @@
 # Ansible role: Cloudflare DNS
+<img src="https://www.cloudflare.com/img/logo-cloudflare-dark.svg" alt="cloudflare_logo" height="50"/>
 
 This role manages Cloudlare DNS records.  
 

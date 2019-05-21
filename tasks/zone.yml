@@ -20,7 +20,11 @@
       X-Auth-Email: "{{ cfEmail }}"
       X-Auth-Key: "{{ cfAPIKey }}"
       Content-Type: "application/json"
-    body: {"name":"item.name","account":{"id":"cfAccountID","name":"cfAccountName"},"jump_start":true}
+    body: >-
+      {"name":"{{ item.name }}",
+      "account":{"id":"{{ cfAccountID }}",
+      "name":"{{ cfAccountName }}"},
+      "jump_start":true}
     status_code: 200
   when:
     - zonePresent.json is defined
