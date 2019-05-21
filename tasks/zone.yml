@@ -1,0 +1,68 @@
+---
+- name: Get zone ID for matching name
+  uri:
+    url: "{{ cfAPIEndpoint }}zones?name={{ item.name }}&page=1&per_page=50&order=status&direction=desc&match=all"
+    method: GET
+    headers:
+      X-Auth-Email: "{{ cfEmail }}"
+      X-Auth-Key: "{{ cfAPIKey }}"
+      Content-Type: "application/json"
+    status_code:
+      - 200
+      - 304
+  register: zonePresent
+
+- name: Create zone
+  uri:
+    url: "{{ cfAPIEndpoint }}zones"
+    method: POST
+    headers:
+      X-Auth-Email: "{{ cfEmail }}"
+      X-Auth-Key: "{{ cfAPIKey }}"
+      Content-Type: "application/json"
+    body: {"name":"item.name","account":{"id":"cfAccountID","name":"cfAccountName"},"jump_start":true}
+    status_code: 200
+  when:
+    - zonePresent.json is defined
+    - not zonePresent.json.success
+    - item.state == 'present'
+  register: zoneCreated
+
+- name: Set the zone id variable from "get"
+  set_fact:
+    zoneID: "{{ zonePresent.json.result[0].id }}"
+  when:
+    - zonePresent.json is defined
+    - zonePresent.json.success
+
+- name: Set the zone id variable from "create"
+  set_fact:
+    zoneID: "{{ zoneCreated.json.result.id }}"
+  when:
+    - zoneCreated.json is defined
+    - zoneCreated.json.success
+
+- name: Fail when zone is not present and could not be created
+  fail:
+    msg: Zone is not present and could not be created
+  when:
+    - not zonePresent.json.success
+    - not zoneCreated.json.success
+
+- name: Delete zone
+  uri:
+    url: "{{ cfAPIEndpoint }}zones/{{ zoneID }}"
+    method: DELETE
+    headers:
+      X-Auth-Email: "{{ cfEmail }}"
+      X-Auth-Key: "{{ cfAPIKey }}"
+      Content-Type: "application/json"
+    status_code: 200
+  when: item.state == 'absent'
+  register: zoneDeleted
+
+- include_tasks: record.yml
+  loop: "{{ item.records }}"
+  loop_control:
+    loop_var: record
+  when: not item.state == 'absent'

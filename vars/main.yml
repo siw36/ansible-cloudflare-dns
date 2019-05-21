@@ -1,0 +1,26 @@
+---
+cfAPIKey: "{{ vault_cfAPIKey }}"
+cfEmail: "{{ vault_cfEmail }}"
+cfAccountID: "{{ vault_cfAccountID }}"
+cfAccountName: "{{ vault_cfAccountName }}"
+
+zones:
+  - name: example.com
+    state: present
+    records:
+
+      - name: "*"
+        value: 1.1.1.1
+        type: A
+        proxied: false
+        ttl: 120
+        priority: 10
+        state: present
+
+      - name: server0
+        value: 2.2.2.2
+        type: A
+        proxied: false
+        ttl: 3600
+        priority: 10
+        state: present
