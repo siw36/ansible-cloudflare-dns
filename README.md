@@ -30,7 +30,7 @@ Record variables:
 `value`: the value that record should be resolving to  
 `type`: type of the DNS record. Valid values: [`A`|`AAAA`|`CNAME`|`TXT`|`SRV`|`LOC`|`MX`|`NS`|`SPF`|`CERT`|`DNSKEY`|`DS`|`NAPTR`|`SMIMEA`|`SSHFP`|`TLSA`|`URI`]  
 `proxied`: set if the records should be proxied through Cloudflare's servers or should resolve directly to your server. Valid values: [`true`|`false`]  
-`ttl`: time to live of the DNS record in seconds. Default is `120`  
+`ttl`: time to live of the DNS record in seconds. Must be between 120 and 2,147,483,647 seconds, or 1 for automatic. Default is `120`  
 `priority`: the priority of the DNS record. Default is `10`  
 `state`: the state of the DNS record. Valid values: [`present`|`absent`]  
 
@@ -103,7 +103,7 @@ vault_cfAccountName: "example.com"
   gather_facts: false
   become: false
   vars_files:
-    - vars/vault.yml
+    - siw36.ansible_cloudflare_dns/vars/vault.yml
   roles:
     - siw36.ansible_cloudflare_dns
 ```
