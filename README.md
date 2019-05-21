@@ -3,12 +3,12 @@
 This role manages Cloudlare DNS records.  
 
 With this you can [create|update|delete] Cloudflare DNS records for one or multiple domains.  
-All DNS zones and records can be managed by a vars file which allows you to picture you project's DNS setup as "infrastructure as code".  
+All DNS zones and records can be managed by a vars file which allows you to picture your project's DNS setup as "infrastructure as code".  
 
-This role works for payed AND free Cloudflare plans.  
+This role works for paid AND free Cloudflare plans.  
 
 Example use case:  
-You can easily include this role in any server provisioning routine (cloud, etc.) to atomatically set up DNS records for new machines.  
+You can easily include this role in any server provisioning routine (cloud, etc.) to automatically set up DNS records for new machines.  
 
 ## Requirements
 - Ansible
@@ -28,7 +28,7 @@ Record variables:
 `name`: name of the DNS record without the zone name (host0.example.com -> host0)  
 `value`: the value that record should be resolving to  
 `type`: type of the DNS record. Valid values: [`A`|`AAAA`|`CNAME`|`TXT`|`SRV`|`LOC`|`MX`|`NS`|`SPF`|`CERT`|`DNSKEY`|`DS`|`NAPTR`|`SMIMEA`|`SSHFP`|`TLSA`|`URI`]  
-`proxied`: set if the records should be proxied through Cloudflares servers or should resolve directly to your server. Valid values: [`true`|`false`]  
+`proxied`: set if the records should be proxied through Cloudflare's servers or should resolve directly to your server. Valid values: [`true`|`false`]  
 `ttl`: time to live of the DNS record in seconds. Default is `120`  
 `priority`: the priority of the DNS record. Default is `10`  
 `state`: the state of the DNS record. Valid values: [`present`|`absent`]  
