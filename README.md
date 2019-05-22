@@ -3,10 +3,12 @@
 
 This role manages Cloudlare DNS records.  
 
-With this you can [create|update|delete] Cloudflare DNS records for one or multiple domains.  
-All DNS zones and records can be managed by a vars file which allows you to picture your project's DNS setup as "infrastructure as code".  
+With this role you can [create|update|delete] Cloudflare DNS records for one or multiple domains.  
+All DNS zones and records can be managed by a variable file which allows you to picture your project's DNS setup as "infrastructure as code".  
 
 This role works for paid AND free Cloudflare plans.  
+
+__Configuration of variables is mandatory for this role to work!__ (See below to find out what vars needs to be set in what format)  
 
 Example use case:  
 You can easily include this role in any server provisioning routine (cloud, etc.) to automatically set up DNS records for new machines.  
