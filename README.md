@@ -77,7 +77,7 @@ zones:
         state: present
 ```
 
-#### File: __defaults/vault.yml__  
+#### File: __vars/vault.yml__  
 
 Cloudflare account credentials:  
 `vault_cfAPIKey`: can be obtained in your Cloudflare account "My Profile" -> "API Keys"  
@@ -87,7 +87,7 @@ Cloudflare account credentials:
 
 I strongly recommend to encrypt this vault file before pushing it to your git repository:  
 ```shell
-ansible-vault encrypt defaults/vault.yml
+ansible-vault encrypt vars/vault.yml
 ```
 
 Example:  
