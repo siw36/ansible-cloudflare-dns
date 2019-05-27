@@ -68,7 +68,18 @@
   when: item.state == 'absent'
   register: zoneDeleted
 
-- include_tasks: record.yml
+- name: Manage records
+  cloudflare_dns:
+    zone: "{{ item.name }}"
+    record: "{{ record.name }}"
+    state: "{{ record.state }}"
+    type: "{{ record.type }}"
+    value: "{{ record.type }}"
+    priority: "{{ record.priority }}"
+    ttl: "{{ record.ttl }}"
+    proxied: "{{ item.proxied }}"
+    account_email: "{{ cfEmail }}"
+    account_api_token: "{{ cfAPIKey }}"
   loop: "{{ item.records }}"
   loop_control:
     loop_var: record

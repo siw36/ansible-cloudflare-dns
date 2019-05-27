@@ -3,7 +3,7 @@
 
 This role manages Cloudlare DNS records.  
 
-With this role you can [create|update|delete] Cloudflare DNS records for one or multiple domains.  
+With this role you can [create|update|delete] Cloudflare DNS records ans zones.  
 All DNS zones and records can be managed by a variable file which allows you to picture your project's DNS setup as "infrastructure as code".  
 
 This role works for paid AND free Cloudflare plans.  
@@ -85,6 +85,8 @@ Cloudflare account credentials:
 `vault_cfAccountID`: Can be obtained after login to `https://dash.cloudflare.com` from the zone overview "Account ID"  
 `vault_cfAccountName`: the zone name
 
+The vault vars file gets automatically included at the start of the play.  
+
 I strongly recommend to encrypt this vault file before pushing it to your git repository:  
 ```shell
 ansible-vault encrypt vars/vault.yml
@@ -106,8 +108,6 @@ vault_cfAccountName: "example.com"
   hosts: localhost
   gather_facts: false
   become: false
-  vars_files:
-    - siw36.ansible_cloudflare_dns/vars/vault.yml
   roles:
     - siw36.ansible_cloudflare_dns
 ```

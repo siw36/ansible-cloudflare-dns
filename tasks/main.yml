@@ -1,3 +1,6 @@
 ---
+- name: Include vault vars file
+  include_vars: vars/vault.yml
+
 - include_tasks: zone.yml
   loop: "{{ zones }}"
