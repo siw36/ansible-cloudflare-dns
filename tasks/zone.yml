@@ -68,6 +68,18 @@
   when: item.state == 'absent'
   register: zoneDeleted
 
+- name: Configure SSL
+  uri:
+    url: https://api.cloudflare.com/client/v4/zones/{{ vault_cfAccountID }}/settings/ssl
+    method: PATCH
+    body: '{"value":"{{ item.ssl | string }}"}'
+    body_format: json
+    headers:
+      Content-Type: "application/json"
+      X-Auth-Email: '{{ cfEmail }}'
+      X-Auth-Key: '{{ cfAPIKey }}'
+    status_code: 200
+
 - name: Manage records
   cloudflare_dns:
     zone: "{{ item.name }}"
