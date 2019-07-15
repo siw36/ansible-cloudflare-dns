@@ -4,3 +4,14 @@
 
 - include_tasks: zone.yml
   loop: "{{ zones }}"
+
+- name: Configure ssl
+  uri:
+    url: https://api.cloudflare.com/client/v4/zones/{{ vault_cfAccountID }}/settings/ssl
+    method: PATCH
+    body: '{"value":"{{ vault_cfSSL }}"}'
+    body_format: json
+    headers:
+      Content-Type: "application/json"
+      X-Auth-Email: '{{ vault_cfEmail }}'
+      X-Auth-Key: '{{ vault_cfAPIKey }}'
