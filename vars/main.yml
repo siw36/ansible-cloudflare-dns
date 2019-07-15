@@ -7,6 +7,7 @@ cfAccountName: "{{ vault_cfAccountName }}"
 zones:
   - name: example.com
     state: present
+    ssl: full
     records:
 
       - name: "*"

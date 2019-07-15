@@ -27,6 +27,7 @@ Zone variables:
 `zones`: list of DNS zones that should be created, deleted or updated  
 `name`: name of the DNS zone that should be created, deleted or updated  
 `state`: state of the zone. Valid values: [`present`|`absent` ]  
+`ssl`: type of SSL encryption between client <-> cloudflare <-> the target server. Valid values: [`off`|`flexible`|`full`|`strict`]  
 `records`: list of DNS records in this zone that should be created, deleted or updated  
 
 Record variables:  
