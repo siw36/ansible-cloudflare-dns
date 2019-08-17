@@ -1,5 +1,8 @@
 # Ansible role: Cloudflare DNS  
 
+
+# This repo is archived. Please use the ansible module for cloudflare DNS records: https://docs.ansible.com/ansible/latest/modules/cloudflare_dns_module.html
+
 ![Ansible Role](https://img.shields.io/ansible/role/40608.svg?color=blue) ![Ansible Quality Score](https://img.shields.io/ansible/quality/40608.svg?color=blue) ![Ansible Role](https://img.shields.io/ansible/role/d/40608.svg?color=blue)
 
 <img src="https://www.cloudflare.com/img/logo-cloudflare-dark.svg" alt="cloudflare_logo" height="50"/>
